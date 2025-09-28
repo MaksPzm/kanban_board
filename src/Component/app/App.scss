@@ -1,0 +1,24 @@
+$font_family: Roboto, sans-serif;
+.App {
+  box-sizing: border-box;
+}
+.wrapper {
+  width: 1235px;
+  margin: 0 auto;
+  font-family: $font_family
+}
+.header {
+  height: 55px;
+  background-color: rgba(0, 103, 163, 1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .header__title {
+    color: rgba(255, 255, 255, 1);
+    font: 400 28px / 100% $font_family;
+    margin-left: 20px;
+  }
+  .profile {
+    margin-right: 16px;
+  }
+}
