@@ -1,0 +1,17 @@
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  .vector__bottom {
+    width: 7.42px;
+    height: 7.42px;
+    border-left: 2px rgba(255, 255, 255, 1) solid;
+    border-top: 2px rgba(255, 255, 255, 1) solid;
+    transform: rotate(225deg);
+  }
+  .vector__top {
+    @extend .vector__bottom;
+    transform: rotate(45deg);
+  }
+}
