@@ -1,6 +1,8 @@
 $font_family: Roboto, sans-serif;
 .App {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 .wrapper {
   width: 1235px;
@@ -21,4 +23,13 @@ $font_family: Roboto, sans-serif;
   .profile {
     margin-right: 16px;
   }
+}
+.main {
+  height: 590px;
+  background-color: rgba(0, 121, 191, 1);
+}
+
+.footer {
+  height: 55px;
+  background-color: rgba(0, 103, 163, 1);
 }

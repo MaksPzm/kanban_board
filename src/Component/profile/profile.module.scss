@@ -3,6 +3,7 @@
   align-items: center;
   gap: 8px;
   cursor: pointer;
+  position: relative;
   .vector__bottom {
     width: 7.42px;
     height: 7.42px;
@@ -13,5 +14,11 @@
   .vector__top {
     @extend .vector__bottom;
     transform: rotate(45deg);
+  }
+  .profile__menu {
+    position: absolute;
+    width: 134px;
+    top: 61px;
+    right: 9px;
   }
 }
