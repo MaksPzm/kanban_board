@@ -1,0 +1,56 @@
+.taskBlock {
+  width: 282px;
+  margin-top: 20px;
+  margin-bottom: 32px;
+  display: inline-flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: rgba(235, 236, 240, 1);
+  .taskBlock__section {
+    margin: 12px 12px 8px;
+    .taskBlock__section_title {
+      font: 400 18px "Roboto", sans-serif;
+      margin: 0;
+    }
+    .taskBlock__section_list {
+      list-style: none;
+      margin: 15px 0 3px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      .taskBlock__section_list_item {
+        width: 258px;
+        background-color: rgba(255, 255, 255, 1);
+        border-radius: 5px;
+        padding: 1px;
+        .taskBlock__section_list_item_text {
+          width: 241px;
+          padding: 1px;
+          margin: 5px 6px;
+          font-size: 18px;
+        }
+      }
+      .taskBlock__section_list_btn {
+        width: 102px;
+        height: 29px;
+        border: none;
+        align-self: flex-start;
+        margin-top: 2px;
+        font: 18px Roboto, sans-serif;
+        color: rgba(94, 108, 132, 1);
+        cursor: pointer;
+        .taskBlock__section_list_btn_sp {
+          font-size: 24px;
+          line-height: 0;
+        }
+      }
+      .taskBlock__section_list_btn:hover {
+        color: rgba(255, 255, 255, 1);
+        background-color: rgb(0, 121, 191);
+        border-radius: 5px;
+      }
+    }
+  }
+
+}
