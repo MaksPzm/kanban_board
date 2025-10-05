@@ -1,8 +1,9 @@
 import React, {MouseEventHandler, useState} from "react";
 import TaskBlock from "../taskBlock/TaskBlock";
+import ReadyTaskBlock from "../readyTaskBlock/ReadyTaskBlock";
 import styles from "../taskBlock/taskBlock.module.scss";
 
-type Task = {id: number, name: string, description: string, task: string};
+export type Task = {id: number, name: string, description: string, task: string};
 
 export default function Main(): React.JSX.Element {
     const [task, setTask] = useState<[Task] | []>([]);
@@ -11,7 +12,6 @@ export default function Main(): React.JSX.Element {
         // @ts-ignore
         setTask([...task, change]);
     }
-    console.log("task", task);
     return (
         <div className="main">
             <TaskBlock task={"Backlog"} name={"Backlog"} changeTask={changeTask} showBtnSubmit={true}
@@ -32,6 +32,7 @@ export default function Main(): React.JSX.Element {
                            </li>)
                        }
             />
+            <ReadyTaskBlock taskList={task} name={"Ready"}/>
         </div>
     )
 }

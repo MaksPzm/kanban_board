@@ -30,7 +30,6 @@ export default function TaskBlock({task, name, showBtnSubmit, children, changeTa
         if (changeTask !== undefined) changeTask(res);
         setResults(res);
     }, [change, id])
-    console.log(results)
     return  (
         <div className={styles.taskBlock} id={task}>
             <div className={styles.taskBlock__section}>
