@@ -23,15 +23,15 @@ export default function Main(): React.JSX.Element {
                    </li>)
                 }
             />
-            <TaskBlock task={"Ready"} name={"Ready"} showBtnSubmit={false}
-                       children={task.map((value: Task, index: number) =>
-                           <li key={index} id={`${value.id}`} className={styles.taskBlock__section_list_item_ready} onClick={(event: React.MouseEvent) => {
-                               console.log(event)
-                           }}>
-                               {value.name}
-                           </li>)
-                       }
-            />
+            {/*<TaskBlock task={"Ready"} name={"Ready"} showBtnSubmit={false}*/}
+            {/*           children={task.map((value: Task, index: number) =>*/}
+            {/*               <li key={index} id={`${value.id}`} className={styles.taskBlock__section_list_item_ready} onClick={(event: React.MouseEvent) => {*/}
+            {/*                   console.log(event)*/}
+            {/*               }}>*/}
+            {/*                   {value.name}*/}
+            {/*               </li>)*/}
+            {/*           }*/}
+            {/*/>*/}
             <ReadyTaskBlock taskList={task} name={"Ready"}/>
         </div>
     )
