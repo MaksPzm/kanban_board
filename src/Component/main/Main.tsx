@@ -1,4 +1,4 @@
-import React, {MouseEventHandler, useState} from "react";
+import React, {MouseEventHandler, useCallback, useState} from "react";
 import TaskBlock from "../taskBlock/TaskBlock";
 import ReadyTaskBlock from "../readyTaskBlock/ReadyTaskBlock";
 import styles from "../taskBlock/taskBlock.module.scss";
@@ -12,6 +12,12 @@ export default function Main(): React.JSX.Element {
         // @ts-ignore
         setTask([...task, change]);
     }
+    const arrayListReadyTask = (newList: any): any => {
+        setTask(newList);
+        console.log("newList", newList);
+    };
+    // console.log("task", task)
+    // const [listReadyTask, setListReadyTask] = useState<[Task] | []>([]);
     return (
         <div className="main">
             <TaskBlock task={"Backlog"} name={"Backlog"} changeTask={changeTask} showBtnSubmit={true}
@@ -23,16 +29,7 @@ export default function Main(): React.JSX.Element {
                    </li>)
                 }
             />
-            {/*<TaskBlock task={"Ready"} name={"Ready"} showBtnSubmit={false}*/}
-            {/*           children={task.map((value: Task, index: number) =>*/}
-            {/*               <li key={index} id={`${value.id}`} className={styles.taskBlock__section_list_item_ready} onClick={(event: React.MouseEvent) => {*/}
-            {/*                   console.log(event)*/}
-            {/*               }}>*/}
-            {/*                   {value.name}*/}
-            {/*               </li>)*/}
-            {/*           }*/}
-            {/*/>*/}
-            <ReadyTaskBlock taskList={task} name={"Ready"}/>
+            <ReadyTaskBlock taskList={task} name={"Ready"} arrayListReadyTask={arrayListReadyTask}/>
         </div>
     )
 }
