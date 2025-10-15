@@ -31,6 +31,49 @@ $font_family: Roboto, sans-serif;
   justify-content: center;
   align-items: flex-start;
   gap: 24px;
+  .taskBlock {
+    position: relative;
+    .taskBlock__dropDownList {
+      width: 91.5%;
+      position: absolute;
+      top: 38px;
+      left: 11px;
+    }
+    .task__btn {
+      width: 102px;
+      height: 29px;
+      margin-bottom: 8px;
+      margin-left: 11px;
+      border: none;
+      align-self: flex-start;
+      color: rgba(94, 108, 132, 1);
+      cursor: pointer;
+      border-radius: 5px;
+      .taskBlock__section_list_btn_text {
+        font: 18px Roboto, sans-serif;
+        .taskBlock__section_list_btn_text_sp {
+          font-size: 24px;
+          line-height: 0;
+          margin-right: 3px;
+        }
+      }
+    }
+    .task__btn:hover {
+      color: rgba(94, 108, 132, 1);
+      background-color: rgba(255, 255, 255, 1);
+
+    }
+    .task__btn_submit {
+      color: rgba(94, 108, 132, 1);
+      background-color: rgba(255, 255, 255, 1);
+    }
+    .task__btn_submit:hover {
+      color: rgba(255, 255, 255, 1);
+      background-color: rgba(0, 121, 191, 1);
+    }
+  }
+
+
 }
 
 .footer {

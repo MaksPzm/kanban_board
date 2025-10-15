@@ -6,10 +6,14 @@ import ListReadyTaskBlock from "../listReadyTaskBlock/ListReadyTaskBlock";
 interface ComponentProps {
     taskList: Task[];
     name: string;
-    arrayListReadyTask: Function;
+    listReady?: Task[]
+    arrayListReadyTask?: Function;
+    arrayListReady?: Function;
+    arrayListProgress?: Function;
+    arrayListFinished?: Function;
 }
 type elRefUL = React.RefObject<HTMLUListElement>
-export default function ReadyTaskBlock({taskList, name, arrayListReadyTask}: ComponentProps): JSX.Element {
+export default function ReadyTaskBlock({taskList, name, listReady, arrayListReadyTask, arrayListReady, arrayListProgress, arrayListFinished}: ComponentProps): JSX.Element {
     const [showList, setShowList] = useState(false);
     const [showDropList, setShowDropList] = useState(false);
     const [showBtn, setShowBtn] = useState(true);
@@ -25,28 +29,21 @@ export default function ReadyTaskBlock({taskList, name, arrayListReadyTask}: Com
 
     const taskListClick = useCallback((e: React.MouseEvent<HTMLLIElement>) => {
         const target = e.target as Element;
-        // console.log("target", target.id);
         let id = +target.id;
         const dataSelectedItem = newTaskList.find((newTaskList) => newTaskList.id === +target.id);
-        // console.log("dataSelectedItem", dataSelectedItem);
         if (dataSelectedItem !== undefined) setListReadyTask([...listReadyTask, dataSelectedItem]);
         setNewTaskList(newTaskList => newTaskList.filter(el => el.id !== id));
-        // setNewArrayTask(newTaskList);
-        // arrayListReadyTask(newArrayTask);
-
     }, [newTaskList, listReadyTask]);
 
     useEffect(() => {
         setNewArrayTask(newTaskList);
-        // arrayListReadyTask(newArrayTask);
     }, [newTaskList]);
     useEffect(() => {
-        arrayListReadyTask(newArrayTask);
-    }, []);
-    // console.log("listReadyTask", listReadyTask);
-    // console.log("newArrayTask", newArrayTask);
-    console.log("newTaskList", newArrayTask);
-    // arrayListReadyTask(newArrayTask);
+        if (arrayListReadyTask !== undefined) arrayListReadyTask(newArrayTask);
+        if (arrayListReady !== undefined) arrayListReady(listReadyTask);
+        if (arrayListProgress !== undefined) arrayListProgress(newArrayTask);
+        if (arrayListFinished !== undefined) arrayListFinished(newArrayTask);
+    }, [newArrayTask]);
     return (
         <div className={styles.taskBlock} id={name}>
             <div className={styles.taskBlock__section}>
@@ -82,3 +79,12 @@ export default function ReadyTaskBlock({taskList, name, arrayListReadyTask}: Com
         </div>
     );
 }
+
+function arrayListProgress(newArrayTask: unknown) {
+    throw new Error("Function not implemented.");
+}
+function arrayListFinished(newArrayTask: unknown) {
+    throw new Error("Function not implemented.");
+}
+
+// Нужно переделать так чтобы принимал массив от предыдущего

@@ -1,0 +1,27 @@
+.dropList__list {
+  padding: 0;
+  list-style: none;
+  display: block;
+  margin: 6px 0;
+  font-size: 18px;
+  border-radius: 5px;
+  .taskBlock__section_list_item_ready {
+    background-color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 6px 7px;
+    //font-size: 18px;
+  }
+  .taskBlock__section_list_item_ready:hover {
+    background-color: rgba(222, 222, 222, 1);
+  }
+  .taskBlock__section_list_item_ready:first-of-type {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  .taskBlock__section_list_item_ready:last-of-type {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+}

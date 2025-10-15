@@ -119,4 +119,24 @@
   }
 }
 
+.task__btn {
+    width: 102px;
+    height: 29px;
+    border: none;
+    align-self: flex-start;
+    margin-top: 2px;
+    font: 18px Roboto, sans-serif;
+    color: rgba(94, 108, 132, 1);
+    cursor: pointer;
+    .taskBlock__section_list_btn_sp {
+      font-size: 24px;
+      line-height: 0;
+    }
+
+  .taskBlock__section_list_btn:hover {
+    color: rgba(255, 255, 255, 1);
+    background-color: rgb(0, 121, 191);
+    border-radius: 5px;
+  }
+}
 
