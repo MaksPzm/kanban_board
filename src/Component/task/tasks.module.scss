@@ -1,0 +1,114 @@
+.taskBlock {
+  width: 282px;
+  margin-top: 20px;
+  margin-bottom: 32px;
+  display: inline-flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: rgba(235, 236, 240, 1);
+  .taskBlock__section {
+    margin: 12px 12px 8px;
+    .section__list {
+      width: 258px;
+      height: 35px;
+      background-color: rgba(255, 255, 255, 1);
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 43px;
+    }
+    .taskBlock__section_title {
+      font: 400 18px / 100% "Roboto", sans-serif;
+      margin: 0;
+    }
+    .taskBlock__section_list {
+      list-style: none;
+      margin: 15px 0 3px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      position: relative;
+      .taskBlock__section_list_item {
+        background-color: rgba(255, 255, 255, 1);
+        border-radius: 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding: 6px 7px;
+        font-size: 18px;
+      }
+      .taskBlock__section_list_input {
+        @extend .taskBlock__section_list_item;
+        border: none;
+        min-height: 35px;
+        padding: 0;
+      }
+      .taskBlock__section_list_input::placeholder {
+
+        padding: 0;
+        padding-left: 10px;
+      }
+      .taskBlock__section_list_input:focus {
+        //width: 249px;
+        outline: none;
+        line-height: 0;
+
+        padding: 0;
+        padding-left: 10px;
+      }
+      .taskBlock__section_list_input:focus::placeholder {
+        opacity: 0;
+      }
+      .taskBlock__section_list_btn {
+        width: 102px;
+        height: 29px;
+        border: none;
+        align-self: flex-start;
+        margin-top: 2px;
+        font: 18px Roboto, sans-serif;
+        color: rgba(94, 108, 132, 1);
+        cursor: pointer;
+        .taskBlock__section_list_btn_sp {
+          font-size: 24px;
+          line-height: 0;
+        }
+      }
+      .taskBlock__section_list_btn:hover {
+        color: rgba(255, 255, 255, 1);
+        background-color: rgb(0, 121, 191);
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+
+
+.dropList {
+  width: 258px;
+  position: absolute;
+  //margin-bottom: -80px;
+  top: 38px;
+  .taskBlock__section_list_item_ready {
+    background-color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 6px 7px;
+    font-size: 18px;
+  }
+
+  .taskBlock__section_list_item_ready:first-of-type {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  .taskBlock__section_list_item_ready:last-of-type {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  .taskBlock__section_list_item_ready:hover {
+    background-color: rgba(222, 222, 222, 1);
+  }
+}

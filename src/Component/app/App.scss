@@ -33,12 +33,16 @@ $font_family: Roboto, sans-serif;
   gap: 24px;
   .taskBlock {
     position: relative;
-    .taskBlock__dropDownList {
-      width: 91.5%;
-      position: absolute;
-      top: 38px;
-      left: 11px;
+    .taskBlock__section_blockTask {
+      position: relative;
+      .taskBlock__section_blockTask_dropDownList {
+        width: 100%;
+        position: absolute;
+        top: 38px;
+        left: 0;
+      }
     }
+
     .task__btn {
       width: 102px;
       height: 29px;
