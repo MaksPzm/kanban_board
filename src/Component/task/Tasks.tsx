@@ -19,7 +19,6 @@ export default function Tasks(props: ComponentProps): JSX.Element {
 
     } = props;
     const { listTask } = useContext(createMain);
-    console.log("value", listTask);
     const [btnSubmit, setBtnSubmit] = useState<boolean>(false);
     const pressBtn = (boolean: boolean) => {
         setBtnSubmit(boolean);

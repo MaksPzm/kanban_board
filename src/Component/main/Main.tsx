@@ -1,4 +1,4 @@
-import React, {createContext, MouseEventHandler, useCallback, useState} from "react";
+import React, {createContext, MouseEventHandler, useCallback, useMemo, useState} from "react";
 import TaskBlock from "../taskBlock/TaskBlock";
 import ReadyTaskBlock from "../readyTaskBlock/ReadyTaskBlock";
 import styles from "../taskBlock/taskBlock.module.scss";
@@ -10,6 +10,10 @@ interface TypeDefaultValue {
     listReady: Task[];
     listProgress: Task[];
     listFinished: Task[];
+    setListTask: Function;
+    setListReady: Function;
+    setListProgress: Function;
+    setListFinished: Function;
 
 }
 const defaultValue: TypeDefaultValue = {
@@ -17,7 +21,7 @@ const defaultValue: TypeDefaultValue = {
     listReady: [{id: 0, name: "", description: "", task: ""}],
     listProgress: [{id: 0, name: "", description: "", task: ""}],
     listFinished: [{id: 0, name: "", description: "", task: ""}]
-}
+} as TypeDefaultValue
 
 export const createMain = createContext<TypeDefaultValue>(defaultValue);
 
@@ -28,7 +32,9 @@ export default function Main(): React.JSX.Element {
     const [listReady, setListReady] = useState<[Task] | []>([]);
     const [listProgress, setListProgress] = useState<[Task] | []>([]);
     const [listFinished, setListFinished] = useState<[Task] | []>([]);
-    const value = {listTask, listReady, listProgress, listFinished};
+    console.log("listTASKKKKKKK", listTask);
+    console.log("listReAAAAAAAAAAA", listReady)
+    const value = useMemo(() => ({listTask, setListTask, listReady, setListReady, listProgress, setListProgress, listFinished, setListFinished}), [listTask, listReady, listProgress, listFinished]);
     const changeTask = (change: Task) => {
         if (listTask == undefined) return;
         // @ts-ignore
@@ -50,7 +56,7 @@ export default function Main(): React.JSX.Element {
         <createMain.Provider value={value}>
             <div className="main">
                 <TaskBlock task={"Backlog"} name={"Backlog"} changeTask={changeTask} showBtnSubmit={true}
-                    children={newTask.map((value: Task, index: number) =>
+                    children={listTask.map((value: Task, index: number) =>
                        <li key={index} id={`${value.id}`} className={styles.taskBlock__section_list_item} onClick={(event: React.MouseEvent) => {
                            console.log(event)
                        }}>
