@@ -10,15 +10,19 @@ import DropDownList from "../dropDownList/DropDownList";
 import {ShowDropList} from "../showDropList/ShowDropList";
 interface ComponentProps {
     name: string;
-    taskList: Task[] | [];
+    list: Task[] | [];
+    newList: Function;
+    setList: Function
 }
 export default function Tasks(props: ComponentProps): JSX.Element {
+
     const {
         name = "",
-        taskList,
-
+        list,
+        newList,
+        setList
     } = props;
-    const { listTask } = useContext(createMain);
+    const { listTask,  listReady, listProgress, setListReady, setListTask, setNewTask, newTask } = useContext(createMain);
     const [btnSubmit, setBtnSubmit] = useState<boolean>(false);
     const pressBtn = (boolean: boolean) => {
         setBtnSubmit(boolean);
@@ -42,12 +46,12 @@ export default function Tasks(props: ComponentProps): JSX.Element {
         <div className={`taskBlock ${styles.taskBlock}`} id={name}>
             <div className={styles.taskBlock__section}>
                 <h1 className={styles.taskBlock__section_title}>{name}</h1>
-                <ListTask taskList={taskList}/>
+                <ListTask taskList={listTask}/>
                 <div className="taskBlock__section_blockTask">
                     <ShowDropList isShown={btnSubmit} click={clickShowDropList} className={styles.section__list}/>
                     {btn === null &&
                         <div className="taskBlock__section_blockTask_dropDownList">
-                            <DropDownList name={name}/>
+                            <DropDownList name={name} taskList={listTask} newList={newList} setList={setList}/>
                         </div>
                     }
                 </div>

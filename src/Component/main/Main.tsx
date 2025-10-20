@@ -1,4 +1,4 @@
-import React, {createContext, MouseEventHandler, useCallback, useMemo, useState} from "react";
+import React, {createContext, MouseEventHandler, useCallback, useEffect, useMemo, useState} from "react";
 import TaskBlock from "../taskBlock/TaskBlock";
 import ReadyTaskBlock from "../readyTaskBlock/ReadyTaskBlock";
 import styles from "../taskBlock/taskBlock.module.scss";
@@ -10,11 +10,12 @@ interface TypeDefaultValue {
     listReady: Task[];
     listProgress: Task[];
     listFinished: Task[];
+    newTask: Task[];
     setListTask: Function;
     setListReady: Function;
     setListProgress: Function;
     setListFinished: Function;
-
+    setNewTask: Function;
 }
 const defaultValue: TypeDefaultValue = {
     listTask: [{id: 0, name: "", description: "", task: ""}],
@@ -32,9 +33,18 @@ export default function Main(): React.JSX.Element {
     const [listReady, setListReady] = useState<[Task] | []>([]);
     const [listProgress, setListProgress] = useState<[Task] | []>([]);
     const [listFinished, setListFinished] = useState<[Task] | []>([]);
-    console.log("listTASKKKKKKK", listTask);
-    console.log("listReAAAAAAAAAAA", listReady)
-    const value = useMemo(() => ({listTask, setListTask, listReady, setListReady, listProgress, setListProgress, listFinished, setListFinished}), [listTask, listReady, listProgress, listFinished]);
+    const value = useMemo(() => ({listTask, setListTask, listReady, setListReady, listProgress, setListProgress, listFinished, setListFinished, newTask, setNewTask}), [listTask, listReady, listProgress, listFinished, newTask]);
+    // const value = {listTask, setListTask, listReady, setListReady, listProgress, setListProgress, listFinished, setListFinished, newTask, setNewTask};
+    useEffect(() => {
+        if (localStorage.getItem("task") !== null) {
+            let parse: any = (localStorage.getItem("task"));
+            let newParse = JSON.parse(parse)
+            console.log("parse", parse, typeof parse);
+            console.log("task", typeof listTask);
+            console.log("newParse", typeof newParse);
+            setListTask(newParse);
+        }
+    }, []);
     const changeTask = (change: Task) => {
         if (listTask == undefined) return;
         // @ts-ignore
@@ -52,11 +62,17 @@ export default function Main(): React.JSX.Element {
     const arrayListFinished = (newList: any): any => {
         setListFinished(newList);
     };
+    useEffect(() => {
+        console.log("newTask", newTask);
+        // setListTask(newTask);
+        console.log("type", typeof (newTask), newTask.length);
+        console.log("rrrr", listReady)
+    }, [listReady, newTask]);
     return (
         <createMain.Provider value={value}>
             <div className="main">
                 <TaskBlock task={"Backlog"} name={"Backlog"} changeTask={changeTask} showBtnSubmit={true}
-                    children={listTask.map((value: Task, index: number) =>
+                    children={newTask.map((value: Task, index: number) =>
                        <li key={index} id={`${value.id}`} className={styles.taskBlock__section_list_item} onClick={(event: React.MouseEvent) => {
                            console.log(event)
                        }}>
@@ -64,7 +80,7 @@ export default function Main(): React.JSX.Element {
                        </li>)
                     }
                 />
-                <Tasks name={"Ready"} taskList={listTask}/>
+                <Tasks name={"Ready"} list={listTask} newList={arrayListReady} setList={arrayListReadyTask}/>
                 <ReadyTaskBlock taskList={listTask} listReady={listReady} name={"Ready"} arrayListReadyTask={arrayListReadyTask} arrayListReady={arrayListReady}/>
                 {/*<ReadyTaskBlock taskList={listTask} name={"In Progress"} arrayListProgress={arrayListProgress}/>*/}
                 <ReadyTaskBlock taskList={listTask} name={"Finished"} arrayListFinished={arrayListFinished}/>

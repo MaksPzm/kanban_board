@@ -9,6 +9,7 @@ export default function ListTask(props: ComponentProps): JSX.Element {
     const {taskList} = props;
     const ListElRef = useRef<unknown>(null) as elRefUL;
     const { listReady } = useContext(createMain);
+    console.log("listReadyLLLLLLLLLL", listReady);
     return (
         <ul className="task__section_list" ref={ListElRef}>
             {listReady.map((task: Task, index: number) => <li  key={index} id={`${task.id}`} className={styles.taskBlock__section_list_item_ready}>{task.name}</li>)}

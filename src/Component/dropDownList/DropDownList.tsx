@@ -5,55 +5,58 @@ import Tasks from "../task/Tasks";
 
 interface ComponentProps {
     name: string;
+    taskList: Task[] | [];
+    newList: Function;
+    setList: Function
 }
 export default function DropDownList(props: ComponentProps): JSX.Element {
-    const {name} = props;
-    const { listTask,  listReady, listProgress, setListReady, setListTask } = useContext(createMain);
+    const {name, taskList, newList, setList} = props;
+    // const { listTask,  listReady, listProgress, setListReady, setListTask, setNewTask, newTask } = useContext(createMain);
     const [newTaskList, setNewTaskList] = useState<Task[] | []>([]);
     const [newReadyList, setNewReadyList] = useState<Task[]>([]);
     const [newProgressList, setNewProgressList] = useState<Task[]>([]);
     const [newFinishedList, setNewFinishedList] = useState<Task[]>([]);
-    // const taskListClick = useCallback((e: React.MouseEvent<HTMLLIElement>) => {
-    //     const target = e.target as Element;
-    //     let id = +target.id;
-    //     const dataSelectedItem = newTaskList.find((newTaskList) => newTaskList.id === +target.id);
-    //     if (dataSelectedItem !== undefined) setListReadyTask([...listReadyTask, dataSelectedItem]);
-    //     setNewTaskList(newTaskList => newTaskList.filter(el => el.id !== id));
-    // }, [newTaskList, listReadyTask]);
-    // const clickReadyList = useCallback((e: React.MouseEvent<HTMLLIElement>) => {
-    //     const target = e.target as Element;
-    //     let id = +target.id;
-    //     const
-    // })
+    const [dataReady, setDataReady] = useState<Task[] | []>([]);
     const clickReadyList = useCallback((e: React.MouseEvent<HTMLLIElement>) => {
         const target = e.target as Element;
         let id = +target.id;
-        const dataSelectedItem = listTask.find((e) => e.id === +target.id);
-        if (dataSelectedItem !== undefined) setListReady([...listReady, dataSelectedItem]);
-        setNewTaskList(listTask.filter(el => el.id !== +target.id));
-        // if (newTaskList.length !== 0) {setListTask(newTaskList)}
-    }, [listTask, listReady, setListReady])
-    // useEffect(() => {
-    //     console.log("listRRR", listReady)
-    //     console.log("listNewTTTT", newTaskList)
-    //     setListTask(newTaskList);
-    // }, [newTaskList])
+        const dataSelectedItem = taskList.find((e) => e.id === +target.id);
+        // if (dataSelectedItem !== undefined)
+        // if (dataSelectedItem !== undefined) setDataReady([dataSelectedItem]);
+        // setListReady([...listReady, dataSelectedItem]);
+        if (dataSelectedItem !== undefined) setDataReady([...dataReady, dataSelectedItem])
+        let newArray = taskList.filter((e) => e.id !== +id);
+        setNewTaskList(taskList.filter(el => el.id !== +id));
+        // if (newTaskList.length !== 0) setNewTask(newArray);
+        console.log('newArray' ,newArray);
 
+
+        // if (newTaskList.length !== 0) {setListTask(newTaskList)}
+    }, [taskList, dataReady]);
+    useEffect(() => {
+        console.log("datadatatatat", dataReady)
+        console.log('newttttttttask', newTaskList)
+       // setListTask(newTaskList)
+        if (dataReady.length !== 0) newList(dataReady);
+        localStorage.setItem('task', JSON.stringify(newTaskList));
+        if (newTaskList !== undefined) setList(...newTaskList, taskList)
+        // setListReady(dataReady);
+    }, [dataReady]);
     return (
         <div className="dropList">
             <ul className={styles.dropList__list}>
-                {name === "Ready" && listTask.map((value: Task, index: number) =>
+                {name === "Ready" && taskList.map((value: Task, index: number) =>
                     <li key={index} id={`${value.id}`} className={styles.taskBlock__section_list_item_ready} onClick={clickReadyList}>
                         {value.name}
                     </li>)}
-                {name === "In Progress" && listReady.map((value: Task, index: number) =>
-                    <li key={index} id={`${value.id}`} className={styles.taskBlock__section_list_item_ready}>
-                        {value.name}
-                    </li>)}
-                {name === "Finished" && listProgress.map((value: Task, index: number) =>
-                    <li key={index} id={`${value.id}`} className={styles.taskBlock__section_list_item_ready}>
-                        {value.name}
-                    </li>)}
+                {/*{name === "In Progress" && listReady.map((value: Task, index: number) =>*/}
+                {/*    <li key={index} id={`${value.id}`} className={styles.taskBlock__section_list_item_ready}>*/}
+                {/*        {value.name}*/}
+                {/*    </li>)}*/}
+                {/*{name === "Finished" && listProgress.map((value: Task, index: number) =>*/}
+                {/*    <li key={index} id={`${value.id}`} className={styles.taskBlock__section_list_item_ready}>*/}
+                {/*        {value.name}*/}
+                {/*    </li>)}*/}
             </ul>
 
         </div>
