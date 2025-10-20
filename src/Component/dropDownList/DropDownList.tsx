@@ -12,7 +12,7 @@ interface ComponentProps {
 export default function DropDownList(props: ComponentProps): JSX.Element {
     const {name, taskList, newList, setList} = props;
     // const { listTask,  listReady, listProgress, setListReady, setListTask, setNewTask, newTask } = useContext(createMain);
-    const [newTaskList, setNewTaskList] = useState<Task[] | []>([]);
+    const [newTaskList, setNewTaskList] = useState<Task[] | []>(taskList);
     const [newReadyList, setNewReadyList] = useState<Task[]>([]);
     const [newProgressList, setNewProgressList] = useState<Task[]>([]);
     const [newFinishedList, setNewFinishedList] = useState<Task[]>([]);
@@ -39,13 +39,13 @@ export default function DropDownList(props: ComponentProps): JSX.Element {
        // setListTask(newTaskList)
         if (dataReady.length !== 0) newList(dataReady);
         localStorage.setItem('task', JSON.stringify(newTaskList));
-        if (newTaskList !== undefined) setList(...newTaskList, taskList)
+        if (newTaskList !== undefined) setList(newTaskList)
         // setListReady(dataReady);
     }, [dataReady]);
     return (
         <div className="dropList">
             <ul className={styles.dropList__list}>
-                {name === "Ready" && taskList.map((value: Task, index: number) =>
+                {name === "Ready" && newTaskList.map((value: Task, index: number) =>
                     <li key={index} id={`${value.id}`} className={styles.taskBlock__section_list_item_ready} onClick={clickReadyList}>
                         {value.name}
                     </li>)}
