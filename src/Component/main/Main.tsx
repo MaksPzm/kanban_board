@@ -50,9 +50,21 @@ export default function Main(): React.JSX.Element {
         // @ts-ignore
         setListTask([...listTask, change]);
     }
-    const arrayListReadyTask = (newList: any): any => {
+    // const arrayListReadyTask = (newList: any): any => {
+    //     setNewTask(newList);
+    //     const list = useMemo(() => newTask, [newTask]);
+    //     setListTask(list)
+    //
+    // };
+    const arrayListReadyTask = useCallback((newList: any): any => {
         setNewTask(newList);
-    };
+        // setListTask(newList)
+
+    }, []);
+
+    // useEffect(() => {
+    //     setListTask(newTask)
+    // }, []);
     const arrayListReady = (newList: any): any => {
         setListReady(newList);
     };
@@ -80,8 +92,9 @@ export default function Main(): React.JSX.Element {
                        </li>)
                     }
                 />
-                <Tasks name={"Ready"} list={listTask} newList={arrayListReady} setList={arrayListReadyTask}/>
-                <ReadyTaskBlock taskList={listTask} listReady={listReady} name={"Ready"} arrayListReadyTask={arrayListReadyTask} arrayListReady={arrayListReady}/>
+                <Tasks name={"Backlog"} list={listTask} newListTask={newTask} newList={arrayListReady} setList={arrayListReadyTask}/>
+                <Tasks name={"Ready"} list={listTask} newListTask={newTask} newList={arrayListReady} setList={arrayListReadyTask}/>
+                {/*<ReadyTaskBlock taskList={listTask} listReady={listReady} name={"Ready"} arrayListReadyTask={arrayListReadyTask} arrayListReady={arrayListReady}/>*/}
                 {/*<ReadyTaskBlock taskList={listTask} name={"In Progress"} arrayListProgress={arrayListProgress}/>*/}
                 <ReadyTaskBlock taskList={listTask} name={"Finished"} arrayListFinished={arrayListFinished}/>
             </div>

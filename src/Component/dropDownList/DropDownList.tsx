@@ -26,7 +26,8 @@ export default function DropDownList(props: ComponentProps): JSX.Element {
         // setListReady([...listReady, dataSelectedItem]);
         if (dataSelectedItem !== undefined) setDataReady([...dataReady, dataSelectedItem])
         let newArray = taskList.filter((e) => e.id !== +id);
-        setNewTaskList(taskList.filter(el => el.id !== +id));
+        // setNewTaskList(taskList.filter(el => el.id !== +id));
+        setNewTaskList(newArray);
         // if (newTaskList.length !== 0) setNewTask(newArray);
         console.log('newArray' ,newArray);
 

@@ -11,14 +11,16 @@ import {ShowDropList} from "../showDropList/ShowDropList";
 interface ComponentProps {
     name: string;
     list: Task[] | [];
+    newListTask: Task[];
     newList: Function;
-    setList: Function
+    setList: Function;
 }
 export default function Tasks(props: ComponentProps): JSX.Element {
 
     const {
         name = "",
         list,
+        newListTask,
         newList,
         setList
     } = props;
